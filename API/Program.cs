@@ -1,3 +1,4 @@
+using Application.Activities.Queries;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 builder.Services.AddOpenApi();
 
 builder.Services.AddCors();
+
+// Adds IMediator as a service
+builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblyContaining<GetActivitiesList.Handler>());
 
 var app = builder.Build();
 
